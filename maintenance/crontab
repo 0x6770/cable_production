@@ -1,0 +1,5 @@
+# Email Setting
+MAILTO=<email@email.com>
+
+# Jobs
+0 */2 * * * /backup.sh 2>&1

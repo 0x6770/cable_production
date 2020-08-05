@@ -1,0 +1,38 @@
+{
+  "name": "shangfu_production_express",
+  "version": "0.1.0",
+  "description": "An express application that provides web interface for production management",
+  "author": "Yujie Wang",
+  "keywords": [
+    "erp",
+    "express",
+    "mongo"
+  ],
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "NODE_ENV=development nodemon server.js"
+  },
+  "license": "Unlicense",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "express-validator": "^6.6.0",
+    "jquery": "^3.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.22",
+    "morgan": "^1.9.1",
+    "mysql": "^2.18.1",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

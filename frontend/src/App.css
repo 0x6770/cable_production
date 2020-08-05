@@ -1,0 +1,57 @@
+.site-layout-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.view-table .ant-table-cell {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+}
+
+.ant-table-filter-column-title,
+.ant-table-filter-column,
+.ant-table-cell,
+.ant-table-tbody > tr > td,
+.ant-table-thead > tr > th {
+  padding: 5px;
+  margin: 0px;
+}
+
+.ant-tag {
+  margin: 0px;
+}
+
+.ant-table-tbody > tr > td {
+  border: 1px solid #555;
+  text-align: center;
+}
+
+.ant-table-thead > tr > th {
+  border: 1px solid #555;
+  text-align: center;
+}
+
+.ant-table-container {
+  border: 1px solid #555;
+}
+
+.editableCell {
+  width: 100%;
+  padding: 2px;
+}
+
+.ant-table-cell .ant-form-item {
+  margin: 0px;
+}
+
+/* .ant-layout.ant-layout-has-sider > .ant-layout {
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.ant-layout.ant-layout-has-sider > .ant-layout-content {
+  overflow: hidden;
+} */

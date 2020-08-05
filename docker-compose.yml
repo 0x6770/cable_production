@@ -1,0 +1,82 @@
+version: "3"
+services:
+  mongo:
+    container_name: mongo
+    image: "mongo:1.0.0"
+    build: ./mongo
+    restart: always
+    volumes:
+      - database:/data/db
+    networks:
+      - virtualNet
+    ports:
+      - 127.0.0.1:27017:27017
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+
+  frontend:
+    container_name: frontend
+    image: "reactapp:1.0.0"
+    build: ./frontend
+    restart: always
+    links:
+      - backend
+    networks:
+      - virtualNet
+
+  backend:
+    container_name: backend
+    image: "expressapp:1.0.0"
+    build: ./backend
+    restart: always
+    networks:
+      - virtualNet
+    depends_on:
+      - mongo
+    env_file: .env
+    environment:
+      - MONGO_USERNAME=$MONGO_USERNAME
+      - MONGO_PASSWORD=$MONGO_PASSWORD
+      - MONGO_HOSTNAME=localhost
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DB=$MONGO_DB
+      - RANDOM_STRING=$RANDOM_STRING
+
+  revproxy:
+    container_name: revproxy
+    image: "revseproxy:1.0.0"
+    build: ./revproxy
+    networks:
+      - virtualNet
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+      - frontend
+      - mongo
+
+  maintenance:
+    container_name: maintenance
+    image: "maintenance:1.0.0"
+    restart: always
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./backup:/backup"
+    build: ./maintenance
+    networks:
+      - virtualNet
+    depends_on:
+      - mongo
+    env_file: .env
+    environment:
+      - SMTP_HOST=$SMTP_HOST
+      - EMAIL_ADDRESS=$EMAIL_ADDRESS
+      - EMAIL_PASSWORD=$EMAIL_PASSWORD
+
+networks:
+  virtualNet:
+
+volumes:
+  database:
